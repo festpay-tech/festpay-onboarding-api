@@ -13,7 +13,7 @@ public class FestpayContextFactory : IDesignTimeDbContextFactory<FestpayContext>
 
     public FestpayContext CreateDbContext(string[] args)
     {
-        var connectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING") ?? throw new Exception("Connection string not found");
+        var connectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING") ?? "Data Source=C:\\teste-fastpay\\festpay-onboarding-api\\Festpay.Onboarding.Infra\\festpay.db;";
 
         // SQLite
         var optionsBuilder = new DbContextOptionsBuilder<FestpayContext>();
