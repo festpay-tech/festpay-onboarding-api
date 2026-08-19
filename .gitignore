@@ -54,3 +54,27 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# JetBrains
+.idea/
+
+# Build
+bin/
+obj/
+
+# SQLite temporários
+*.db-shm
+*.db-wal
+
+# Arquivos temporários
+*.tmp
+*.log
+
+# OS
+Thumbs.db
+.DS_Store

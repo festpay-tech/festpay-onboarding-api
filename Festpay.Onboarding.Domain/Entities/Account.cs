@@ -11,6 +11,8 @@ public class Account : EntityBase
     public string Document { get; private set; } = string.Empty;
     public decimal Balance { get; private set; } = 0;
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public virtual List<Transacao> TransacoesOrigem { get; set; } = [];
+    public virtual List<Transacao> TransacoesDestino { get; set; } = [];
 
     public override void Validate()
     {

@@ -56,6 +56,63 @@ namespace Festpay.Onboarding.Infra.Migrations
 
                     b.ToTable("Accounts");
                 });
+
+            modelBuilder.Entity("Festpay.Onboarding.Domain.Entities.Transacao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedUtc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DeactivatedUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("IdContaDestino")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("IdContaOrigem")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("Decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdContaDestino");
+
+                    b.HasIndex("IdContaOrigem");
+
+                    b.ToTable("Transacao");
+                });
+
+            modelBuilder.Entity("Festpay.Onboarding.Domain.Entities.Transacao", b =>
+                {
+                    b.HasOne("Festpay.Onboarding.Domain.Entities.Account", "ContaDestino")
+                        .WithMany("TransacoesDestino")
+                        .HasForeignKey("IdContaDestino")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Festpay.Onboarding.Domain.Entities.Account", "ContaOrigem")
+                        .WithMany("TransacoesOrigem")
+                        .HasForeignKey("IdContaOrigem")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContaDestino");
+
+                    b.Navigation("ContaOrigem");
+                });
+
+            modelBuilder.Entity("Festpay.Onboarding.Domain.Entities.Account", b =>
+                {
+                    b.Navigation("TransacoesDestino");
+
+                    b.Navigation("TransacoesOrigem");
+                });
 #pragma warning restore 612, 618
         }
     }
